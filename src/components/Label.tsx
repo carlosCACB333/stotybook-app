@@ -24,3 +24,5 @@ export const Label: FC<LabelProps> = ({ value, size = 'normal', color = 'primary
     </span>
   );
 };
+
+export default Label;
