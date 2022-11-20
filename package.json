@@ -1,10 +1,36 @@
 {
-  "name": "storybook-app",
+  "name": "cb-storybook-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "author": "Carlos Castillo Blas",
+  "homepage": "https://carloscb.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosCACB333/stotybook-app"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "scripts": {
-    "start": "start-storybook -p 6006 -s public",
-    "build": "build-storybook -s public"
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "ts": "tsc",
+    "clean": "rimraf dist",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist",
+    "build": "yarn clean && yarn ts && yarn copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +71,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "semantic-release": "^19.0.5",
     "typescript": "^4.9.3",
     "web-vitals": "^2.1.4"
   },
@@ -60,7 +87,17 @@
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "copyfiles": "^2.4.1",
     "prop-types": "^15.8.1",
+    "rimraf": "^3.0.2",
     "webpack": "^5.75.0"
-  }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ]
 }
